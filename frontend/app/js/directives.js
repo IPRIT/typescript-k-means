@@ -33,12 +33,12 @@ angular.module('Neuro.directives', [])
                     drawPoints(points, settings);
                 }
 
-                function drawPoints(clusters, settings) {
-                    let borders = {
+                function drawPoints(points, settings) {
+                    var borders = {
                         min: settings.minBoundary - settings.minDistanceBetween,
                         max: settings.maxBoundary + settings.minDistanceBetween
                     };
-
+                    console.log('Drawing');
                     ctx.strokeStyle = "#222";
                     ctx.beginPath();
                     ctx.moveTo(borders.min, borders.min);
@@ -71,6 +71,7 @@ angular.module('Neuro.directives', [])
                         ctx.beginPath();
                         ctx.arc(x, y, 3, -2 * Math.PI, 2 * Math.PI, true);
                         ctx.fill();
+                        console.log(x, y);
                     });
                 }
 

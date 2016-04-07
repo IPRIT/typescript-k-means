@@ -1,6 +1,6 @@
-import {TestDataProvider, IrisDataProvider, IDataProvider, DataType} from "src/Data/DataProvider";
-import {DataMixer} from "src/Data/DataMixer";
-import {DataNormalizer} from "src/Data/DataNormalizer";
+import {TestDataProvider, IrisDataProvider, IDataProvider, DataType} from "./src/Data/DataProvider";
+import {DataMixer} from "./src/Data/DataMixer";
+import {DataNormalizer} from "./src/Data/DataNormalizer";
 import * as View from "./frontend/app";
 import * as Config from './src/config';
 

@@ -1,4 +1,4 @@
-import ClassGenerator from 'Generator/ClassGenerator';
+import ClassGenerator from './Generator/ClassGenerator';
 import * as Config from '../config';
 //noinspection TypeScriptCheckImport
 import * as fs from 'fs';
@@ -101,7 +101,7 @@ export class IrisDataProvider implements IDataProvider {
   initialize() {
     this.isInit = true;
     //noinspection TypeScriptUnresolvedFunction
-    let data = fs.readFileSync('./Neuro/Data/input/iris.txt', 'utf8');
+    let data = fs.readFileSync('./src/Data/input/iris.txt', 'utf8');
     //noinspection TypeScriptUnresolvedVariable
     let isWin = /^win/.test(process.platform);
     //todo(me): fix when a file will be correctly line-break.

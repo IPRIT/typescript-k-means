@@ -1,4 +1,4 @@
-import {KMEANS_CONF} from "../src/config";
+import {KMEANS_CONF, CLASSES_CONF} from "../src/config";
 //noinspection TypeScriptUnresolvedFunction
 var express = require('express');
 var app = express();
@@ -18,7 +18,7 @@ export function init(_clusters, _onAction: Function = ()=>{}) {
   clusters = _clusters;
   points = _clusters.reduce((acc, cluster) => {
     return acc.concat(cluster.points);
-  });
+  }, []);
   onAction = _onAction;
   runServerInstance();
 }
@@ -52,11 +52,15 @@ function runServerInstance() {
   });
 
   app.get('/getPoints', function (req, res) {
-    res.json(clusters);
+    res.json(points);
   });
 
   app.get('/getSettings', function (req, res) {
-    res.json(KMEANS_CONF);
+    res.json([{
+      KMEANS_CONF
+    }, {
+      CLASSES_CONF
+    }]);
   });
 
   app.post('/computeKmeans', function (req, res) {
