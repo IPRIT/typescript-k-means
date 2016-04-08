@@ -26,7 +26,7 @@ export class EuclideanSquareMetric implements IMetricStrategy {
       throw new Error('Lengths are not equal');
     }
     return a.coords.reduce((sum, scalar, scalarIndex) => {
-      return sum + (scalar - b.coords[scalarIndex]) << 1;
+      return sum + (scalar - b.coords[scalarIndex]) * (scalar - b.coords[scalarIndex]);
     }, 0);
   }
 }

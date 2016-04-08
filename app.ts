@@ -4,14 +4,14 @@ import {DataNormalizer} from "./src/Data/DataNormalizer";
 import * as View from "./frontend/app";
 import * as Config from './src/config';
 import {Kmeans} from "./src/Clusterization/Kmeans";
-import {EuclideanMetric} from "./src/Clusterization/Metrics/Metrics";
+import {EuclideanMetric, EuclideanSquareMetric} from "./src/Clusterization/Metrics/Metrics";
 
 //noinspection TypeScriptUnresolvedFunction
 let colors = require('colors/safe');
 let normalizer: DataNormalizer;
 let dataProvider: IDataProvider;
 let kmeansClusterization: Kmeans;
-let metric = new EuclideanMetric();
+let metric = new EuclideanSquareMetric();
 
 let [inputConfig, outputConfig] = [Config.INPUT_DATA_CONF, Config.OUTPUT_DATA_CONF];
 
