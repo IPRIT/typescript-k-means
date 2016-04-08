@@ -1,12 +1,12 @@
 export const CLASSES_CONF = {
-  classNumber: 130,
+  classNumber: 10,
   classDimension: 2,
   classPointsNumber: 40,
-  minDistanceBetween: 40,
-  radiusCompress: 3, // >= 2
+  minDistanceBetween: 100,
+  radiusCompress: 2, // >= 2
   cross: true,
-  minBoundary: 70,
-  maxBoundary: 650
+  minBoundary: 90,
+  maxBoundary: 500
 };
 
 export const INPUT_DATA_CONF = {

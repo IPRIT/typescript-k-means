@@ -5,6 +5,7 @@ import * as View from "./frontend/app";
 import * as Config from './src/config';
 import {Kmeans} from "./src/Clusterization/Kmeans";
 import {EuclideanMetric, EuclideanSquareMetric} from "./src/Clusterization/Metrics/Metrics";
+import {RsIndex} from "./src/Clusterization/Check/RsIndex";
 
 //noinspection TypeScriptUnresolvedFunction
 let colors = require('colors/safe');
@@ -26,6 +27,9 @@ switch (inputConfig.dataType) {
     dataProvider = new TestDataProvider();
 }
 dataProvider.initialize();
+
+let rsIndex = new RsIndex(dataProvider.data, metric);
+console.log('Rs index:', rsIndex.compute());
 
 if (outputConfig.showClusters) {
   View.init(dataProvider.data, onAction);

@@ -1,5 +1,6 @@
 import {IMetricStrategy} from "./Metrics/Metrics";
 import {IPoint, IClasterizationMethod, ClasterizationType} from "./Clasterization";
+import {RsIndex} from "./Check/RsIndex";
 
 export class Kmeans implements IClasterizationMethod {
 
@@ -36,6 +37,12 @@ export class Kmeans implements IClasterizationMethod {
     this.centroids = this.centroids.map((centroid, centroidIndex) => {
       return this.getMassCenter(groups[centroidIndex]);
     });
+    let rsIndex = new RsIndex(groups.map((group, groupIndex) => {
+      return {
+        points: group.group
+      }
+    }), this.metric);
+    console.log(`Rs index (step: ${this.curIteration}):`, rsIndex.compute());
     return groups.map((group, groupIndex) => {
       return {
         centroid: this.centroids[groupIndex],
