@@ -15,11 +15,14 @@ angular.module('Neuro.controllers', [])
         console.log(3);
     }])
 
-    .controller('CanvasCtrl', ['$scope', 'ApiService', function ($scope, ApiService) {
+    .controller('CanvasCtrl', ['$scope', 'ApiService', '$timeout', '$rootScope', function ($scope, ApiService, $timeout, $rootScope) {
         console.log('Works');
         $scope.clusters = [];
         $scope.points = [];
         $scope.clickedPoints = [];
+        $scope.centroids = 3;
+        $scope.immediately = false;
+        $scope.isComputing = false;
         
         ApiService.getClusters().then(function (data) {
             console.log('Clusters:', data);
@@ -35,5 +38,17 @@ angular.module('Neuro.controllers', [])
             console.log('Settings:', data);
             $scope.settings = data;
         });
+
+        $scope.$watchCollection('clickedPoints', function (curr, prev) {
+            if (curr.length >= $scope.centroids) {
+                $timeout(function () {
+                    $rootScope.$broadcast('kmeans start');
+                }, 1000);
+            }
+        });
+
+        $scope.changeCentroids = function (centroids) {
+            $scope.centroids = centroids;
+        }
     }])
 ;

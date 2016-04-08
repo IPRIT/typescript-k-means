@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "K-means method written on ES2015/TypeScript: (Clusterization)",
   "scripts": {
-    "install": "sudo npm i -g tsd && sudo npm i bower -g && sudo npm i -g tsc && sudo tsd install && sudo npm i && bower i",
-    "start": "sudo tsc && sudo node app.js --harmony"
+    "install": "npm i -g tsd bower tsc && tsd install && npm i && bower i",
+    "start": "tsc && node app.js --harmony"
   },
   "repository": {
     "type": "git",

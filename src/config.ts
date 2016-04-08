@@ -1,12 +1,12 @@
 export const CLASSES_CONF = {
-  classNumber: 5,
+  classNumber: 130,
   classDimension: 2,
-  classPointsNumber: 100,
-  minDistanceBetween: 100,
-  radiusCompress: 2, // >= 2
-  cross: false,
-  minBoundary: 300,
-  maxBoundary: 600
+  classPointsNumber: 40,
+  minDistanceBetween: 40,
+  radiusCompress: 3, // >= 2
+  cross: true,
+  minBoundary: 70,
+  maxBoundary: 650
 };
 
 export const INPUT_DATA_CONF = {
@@ -19,7 +19,6 @@ export const OUTPUT_DATA_CONF = {
 };
 
 export const KMEANS_CONF = {
-  //todo(me): add some settings
   centroids: 3,
-  maxIterations: 10000
+  maxIterations: 100
 };

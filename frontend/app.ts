@@ -56,21 +56,22 @@ function runServerInstance() {
   });
 
   app.get('/getSettings', function (req, res) {
-    res.json([{
-      KMEANS_CONF
-    }, {
+    res.json({
+      KMEANS_CONF,
       CLASSES_CONF
-    }]);
+    });
   });
 
   app.post('/computeKmeans', function (req, res) {
-    let points = req.body.points;
+    let points = req.body.points || [];
     let immediately = req.body.immediately || false;
+    let revoke = req.body.revoke || false;
     onAction({
       type: 'kmeans',
       data: {
         points,
-        immediately
+        immediately,
+        revoke
       }
     }, (err, result) => {
       if (err) {

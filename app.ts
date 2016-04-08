@@ -3,13 +3,17 @@ import {DataMixer} from "./src/Data/DataMixer";
 import {DataNormalizer} from "./src/Data/DataNormalizer";
 import * as View from "./frontend/app";
 import * as Config from './src/config';
+import {Kmeans} from "./src/Clusterization/Kmeans";
+import {EuclideanMetric} from "./src/Clusterization/Metrics/Metrics";
 
 //noinspection TypeScriptUnresolvedFunction
 let colors = require('colors/safe');
 let normalizer: DataNormalizer;
+let dataProvider: IDataProvider;
+let kmeansClusterization: Kmeans;
+let metric = new EuclideanMetric();
 
 let [inputConfig, outputConfig] = [Config.INPUT_DATA_CONF, Config.OUTPUT_DATA_CONF];
-let dataProvider: IDataProvider;
 
 switch (inputConfig.dataType) {
   case DataType.GENERATE:
@@ -37,6 +41,17 @@ function onAction(ev: any, callback: Function = ()=>{}) {
 }
 
 function kmeans(params, callback) {
-  console.log(params, callback);
-  
+  if (!kmeansClusterization || params.revoke) {
+    kmeansClusterization = new Kmeans(
+      params.points,
+      dataProvider.getInput().map(elem => { return { coords: elem } }),
+      metric,
+      Config.KMEANS_CONF.maxIterations
+    );
+  }
+  callback(null, {
+    groups: params.immediately ?
+      kmeansClusterization.run() : kmeansClusterization.runOnce(),
+    stopped: kmeansClusterization.curIteration >= kmeansClusterization.maxIterations
+  });
 }
